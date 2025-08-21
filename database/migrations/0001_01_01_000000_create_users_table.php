@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -25,6 +26,13 @@ return new class extends Migration
             $table->timestamp('last_login_at')->nullable();
             $table->string('last_login_ip')->nullable();
             $table->json('preferences')->nullable(); // User preferences as JSON
+
+            $table->string('provider_name')->nullable()->comment('google, facebook, github, dll');
+            $table->string('provider_id')->nullable()->unique()->comment('ID unik dari provider');
+            $table->string('provider_email')->nullable();
+            $table->string('provider_token')->nullable();
+            $table->string('provider_refresh_token')->nullable();
+            $table->timestamp('provider_token_expires_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

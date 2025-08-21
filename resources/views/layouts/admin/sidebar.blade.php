@@ -16,7 +16,8 @@
                             data-feather="message-square"></i></a>
                     <a href="" class="new" data-bs-toggle="tooltip" title="You have 4 new notifications"><i
                             data-feather="bell"></i></a>
-                    <a href="" data-bs-toggle="tooltip" title="Sign out"><i data-feather="log-out"></i></a>
+                    <a href="{{ route('logout') }}" data-bs-toggle="tooltip" title="Sign out"><i
+                            data-feather="log-out"></i></a>
                 </div>
             </div>
             <div class="aside-loggedin-user">
@@ -37,7 +38,7 @@
                             <span>Account Settings</span></a></li>
                     <li class="nav-item"><a href="" class="nav-link"><i data-feather="help-circle"></i>
                             <span>Help Center</span></a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><i data-feather="log-out"></i>
+                    <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link"><i data-feather="log-out"></i>
                             <span>Sign Out</span></a></li>
                 </ul>
             </div>

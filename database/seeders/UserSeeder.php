@@ -24,14 +24,15 @@ class UserSeeder extends Seeder
 
         $superAdmin = User::factory()->create([
             'name' => 'Super Admin',
-            'email' => 'superadmin@mailinator.com',
             'username' => 'superadmin',
+            'email' => 'superadmin@mailinator.com',
         ]);
 
         $superAdmin->assignRole('Super Admin');
 
         User::factory()->create([
             'name' => 'User',
+            'username' => 'user',
             'email' => 'user@mailinator.com',
         ]);
     }
