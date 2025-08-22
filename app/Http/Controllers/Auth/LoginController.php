@@ -37,11 +37,11 @@ class LoginController extends Controller
             $user = User::where($loginField, $request->login)->first();
 
             if (!$user || !Hash::check($request->password, $user->password)) {
-                return Message::unauthorize("Email/Username atau password salah.");
+                return Message::unauthorize("Incorrect email address/username or password.");
             }
 
             if ($user->email_verified_at === null) {
-                return Message::unauthorize("Akun anda belum diverifikasi. Silahkan hubungi admin.");
+                return Message::unauthorize("Your account has not been verified. Please contact the admin..");
             }
 
             if (Auth::attempt([$loginField => $request->login, 'password' => $request->password])) {
@@ -61,10 +61,10 @@ class LoginController extends Controller
             }
 
             DB::rollBack();
-            return Message::unauthorize("Email/Username atau password salah.");
+            return Message::unauthorize("Incorrect email/username or password.");
         } catch (\Exception $e) {
             DB::rollBack();
-            return Message::error("Terjadi kesalahan. " . $e->getMessage());
+            return Message::error("An error has occurred. " . $e->getMessage());
         }
     }
 }
