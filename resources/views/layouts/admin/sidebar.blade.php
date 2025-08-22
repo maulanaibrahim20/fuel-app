@@ -1,81 +1,57 @@
-<aside class="aside aside-fixed">
-    <div class="aside-header">
-        <a href="../../index.html" class="aside-logo">{{ config('app.name') }}</a>
-        <a href="" class="aside-menu-link">
-            <i data-feather="menu"></i>
-            <i data-feather="x"></i>
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a href="index.html" class="app-brand-link">
+            <span class="app-brand-logo demo">
+                <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                        fill="#7367F0" />
+                    <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z" fill="#161616" />
+                    <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd"
+                        d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z" fill="#161616" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                        fill="#7367F0" />
+                </svg>
+            </span>
+            <span class="app-brand-text demo menu-text fw-bold">{{ config('app.name') }}</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+            <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+            <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
         </a>
     </div>
-    <div class="aside-body">
-        <div class="aside-loggedin">
-            <div class="d-flex align-items-center justify-content-start">
-                <a href="" class="avatar">
-                    <img src="{{ Storage::url(Auth::user()->avatar) ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&background=random' }}"
-                        class="rounded-circle" alt="{{ Auth::user()->name }}"></a>
-                <div class="aside-alert-link">
-                    <a href="" class="new" data-bs-toggle="tooltip" title="You have 2 unread messages"><i
-                            data-feather="message-square"></i></a>
-                    <a href="" class="new" data-bs-toggle="tooltip" title="You have 4 new notifications"><i
-                            data-feather="bell"></i></a>
-                    <a href="javascript:void(0)" id="btn-logout" data-bs-toggle="tooltip" title="Sign out">
-                        <i data-feather="log-out"></i>
-                    </a>
 
-                    <!-- form logout hidden -->
-                    <form id="form-logout" action="{{ route('logout') }}" method="Get" style="display:none;">
-                        @csrf
-                    </form>
-                </div>
-            </div>
-            <div class="aside-loggedin-user">
-                <a href="#loggedinMenu" class="d-flex align-items-center justify-content-between mg-b-2"
-                    data-bs-toggle="collapse">
-                    <h6 class="tx-semibold mg-b-0">{{ Auth::user()->name }}</h6>
-                    <i data-feather="chevron-down"></i>
-                </a>
-                <p class="tx-color-03 tx-12 mg-b-0">{{ Auth::user()->roles->first()->name }}</p>
-            </div>
-            <div class="collapse {{ Request::is('~admin/profile') ? 'show' : '' }}" id="loggedinMenu">
-                <ul class="nav nav-aside mg-b-0">
-                    <li class="nav-item {{ Request::is('~admin/profile') ? 'active' : '' }}"><a
-                            href="{{ route('admin.profile') }}" class="nav-link"><i data-feather="edit"></i> <span>Edit
-                                Profile</span></a></li>
-                    <li class="nav-item">
-                        <a href="javascript:void(0)" class="nav-link btn-logout" id="btn-logout">
-                            <i data-feather="log-out"></i>
-                            <span>Sign Out</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div><!-- aside-loggedin -->
-        <ul class="nav nav-aside">
-            <li class="nav-label">Main</li>
-            <li class="nav-item {{ Request::is('~admin/dashboard') ? 'active' : '' }}"><a
-                    href="{{ route('admin.dashboard') }}" class="nav-link"><i data-feather="home"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            <li class="nav-label mg-t-25">Master Data</li>
-            <li class="nav-item with-sub">
-                <a href="" class="nav-link"><i data-feather="user"></i> <span>User Pages</span></a>
-                <ul>
-                    <li><a href="page-profile-view.html">View Profile</a></li>
-                    <li><a href="page-connections.html">Connections</a></li>
-                    <li><a href="page-groups.html">Groups</a></li>
-                    <li><a href="page-events.html">Events</a></li>
-                </ul>
-            </li>
-            <li class="nav-item with-sub">
-                <a href="" class="nav-link"><i data-feather="file"></i> <span>Other Pages</span></a>
-                <ul>
-                    <li><a href="page-timeline.html">Timeline</a></li>
-                </ul>
-            </li>
-            <li class="nav-label mg-t-25">User Interface</li>
-            <li class="nav-item"><a href="../../components" class="nav-link"><i data-feather="layers"></i>
-                    <span>Components</span></a></li>
-            <li class="nav-item"><a href="../../collections" class="nav-link"><i data-feather="box"></i>
-                    <span>Collections</span></a></li>
-        </ul>
-    </div>
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <li class="menu-item {{ Request::is('~admin/dashboard') ? 'active' : '' }}">
+            <a href="{{ route('admin.dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-home"></i>
+                <div>Dashboard</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-settings"></i>
+                <div>Settings</div>
+                <div class="badge bg-label-primary rounded-pill ms-auto"></div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="index.html" class="menu-link">
+                        <div>Profile</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="dashboards-crm.html" class="menu-link">
+                        <div>Logout</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
 </aside>

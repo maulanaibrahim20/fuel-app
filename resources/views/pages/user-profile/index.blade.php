@@ -56,7 +56,7 @@
                 </div>
 
                 <!-- Account Status Card -->
-                <div class="card mg-t-10">
+                <div class="card mt-2">
                     <div class="card-header pd-t-20 pd-b-15">
                         <h6 class="mg-b-0">Account Status</h6>
                     </div>
@@ -168,7 +168,7 @@
                     </div>
 
                     <!-- Security Settings -->
-                    <div class="card mg-t-10">
+                    <div class="card mt-2">
                         <div class="card-header pd-t-20 pd-b-15">
                             <h6 class="mg-b-0">Security Settings</h6>
                         </div>
@@ -219,7 +219,7 @@
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="card mg-t-10">
+                    <div class="card mt-2">
                         <div class="card-body pd-20 text-right">
                             <button type="button" class="btn btn-white btn-uppercase pd-x-25"
                                 onclick="window.history.back()">

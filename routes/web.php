@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SuperAdmin\DashboardController;
+use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('~admin')->name('admin.')->group(function () {
         Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
         Route::put('profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+
+        Route::group(['prefix' => 'user', 'controller' => UserController::class], function () {
+            Route::get('/', 'index')->name('user');
+            Route::get('/getData', 'getData')->name('user.getData');
+        });
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     });
