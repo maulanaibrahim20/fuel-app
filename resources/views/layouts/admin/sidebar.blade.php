@@ -27,11 +27,18 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <li class="menu-item {{ Request::is('~admin/dashboard') ? 'active' : '' }}">
-            <a href="{{ route('admin.dashboard') }}" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-home"></i>
-                <div>Dashboard</div>
-            </a>
+        <li class="menu-item {{ Request::is('~admin/dashboard') || Request::is('user/dashboard') ? 'active' : '' }}">
+            @role('Super Admin')
+                <a href="{{ route('admin.dashboard') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-home"></i>
+                    <div>Dashboard</div>
+                </a>
+            @else
+                <a href="{{ route('user.dashboard') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-home"></i>
+                    <div>Dashboard</div>
+                </a>
+            @endrole
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -41,12 +48,15 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{ route('admin.profile') }}" class="menu-link">
                         <div>Profile</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="dashboards-crm.html" class="menu-link">
+                    <form id="form-logout" action="{{ route('logout') }}" method="get" style="display:none;">
+                        @csrf
+                    </form>
+                    <a href="dashboards-crm.html" id="btn-logout" class="menu-link">
                         <div>Logout</div>
                     </a>
                 </li>

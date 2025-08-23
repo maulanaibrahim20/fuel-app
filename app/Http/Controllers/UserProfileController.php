@@ -35,7 +35,7 @@ class UserProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Message::validator("Validasi gagal.", $validator->errors());
+            return Message::validator("Validation failed.", $validator->errors());
         }
 
         $user = User::find(Auth::id());
@@ -62,10 +62,10 @@ class UserProfileController extends Controller
 
             DB::commit();
 
-            return Message::success("Profil berhasil diperbarui.");
+            return Message::success("Profile successfully updated.");
         } catch (\Exception $e) {
             DB::rollBack();
-            return Message::error("Terjadi kesalahan saat memperbarui profil: " . $e->getMessage());
+            return Message::error("An error occurred while updating your profile. " . $e->getMessage());
         }
     }
 }

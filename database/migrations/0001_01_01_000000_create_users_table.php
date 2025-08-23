@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
+            $table->boolean('requires_phone_verification')->default(false);
+            $table->boolean('two_factor_enabled')->default(false);
+            $table->enum('two_factor_method', ['sms', 'email', 'app'])->nullable();
+            $table->json('backup_codes')->nullable(); // Backup codes untuk 2FA
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('avatar')->nullable();

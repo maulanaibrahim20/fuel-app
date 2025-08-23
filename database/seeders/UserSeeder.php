@@ -30,10 +30,12 @@ class UserSeeder extends Seeder
 
         $superAdmin->assignRole('Super Admin');
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'User',
             'username' => 'user',
             'email' => 'user@mailinator.com',
         ]);
+
+        $user->assignRole('User');
     }
 }

@@ -40,10 +40,6 @@ class LoginController extends Controller
                 return Message::unauthorize("Incorrect email address/username or password.");
             }
 
-            if ($user->email_verified_at === null) {
-                return Message::unauthorize("Your account has not been verified. Please contact the admin..");
-            }
-
             if (Auth::attempt([$loginField => $request->login, 'password' => $request->password])) {
                 $request->session()->regenerate();
 
@@ -53,10 +49,12 @@ class LoginController extends Controller
 
                 DB::commit();
 
+                $redirectTo = $user->hasRole('Super Admin') ? route('admin.dashboard') : route('user.dashboard');
+
                 return response()->json([
                     'code' => 200,
                     'message' => 'Login berhasil.',
-                    'redirect' => url('/~admin/dashboard'),
+                    'redirect' => $redirectTo,
                 ], 200);
             }
 
