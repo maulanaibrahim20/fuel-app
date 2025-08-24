@@ -9,8 +9,9 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\User\ReceiptController;
+use App\Http\Controllers\User\VehicleController;
 use App\Http\Controllers\UserProfileController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -54,6 +55,20 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('user')->middleware('role:User')->name('user.')->group(function () {
+            Route::group(['prefix' => 'vehicle', 'controller' => VehicleController::class], function () {
+                Route::get('/', 'index')->name('vehicle');
+                Route::get('/create', 'create')->name('vehicle.create');
+                Route::post('/create', 'store')->name('vehicle.store');
+                Route::get('/edit/{id}', 'edit')->name('vehicle.edit');
+                Route::post('/update/{id}', 'update')->name('vehicle.update');
+                Route::delete('/destroy/{id}', 'destroy')->name('vehicle.destroy');
+            });
+
+            Route::group(['prefix' => 'receipt', 'controller' => ReceiptController::class], function () {
+                Route::get('/', 'index')->name('receipt');
+                Route::post('/analyze', 'analyze')->name('receipt.analyze');
+            });
+
             Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
             Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
         });

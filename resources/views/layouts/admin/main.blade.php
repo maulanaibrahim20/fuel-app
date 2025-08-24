@@ -61,8 +61,6 @@
 
     <!-- Core JS -->
     @include('components.admin.js')
-
-
     @stack('scripts')
 </body>
 

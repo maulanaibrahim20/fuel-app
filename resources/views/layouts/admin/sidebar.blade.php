@@ -27,19 +27,39 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <li class="menu-item {{ Request::is('~admin/dashboard') || Request::is('user/dashboard') ? 'active' : '' }}">
-            @role('Super Admin')
+        @role('Super Admin')
+            <li class="menu-item {{ Request::is('~admin/dashboard') || Request::is('user/dashboard') ? 'active' : '' }}">
                 <a href="{{ route('admin.dashboard') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-home"></i>
                     <div>Dashboard</div>
                 </a>
-            @else
+            </li>
+        @else
+            <li class="menu-item {{ Request::is('user/dashboard') || Request::is('user/dashboard') ? 'active' : '' }}">
                 <a href="{{ route('user.dashboard') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-home"></i>
                     <div>Dashboard</div>
                 </a>
-            @endrole
-        </li>
+            </li>
+        @endrole
+        @role('Super Admin')
+            {{-- <li class="menu-item">
+
+            </li> --}}
+        @else
+            <li class="menu-item {{ Request::is('user/vehicle') ? 'active' : '' }}">
+                <a href="{{ route('user.vehicle') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-motorbike"></i>
+                    <div>Add Vechile</div>
+                </a>
+            </li>
+            <li class="menu-item {{ Request::is('user/receipt') ? 'active' : '' }}">
+                <a href="{{ route('user.receipt') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-receipt"></i>
+                    <div>Receipt</div>
+                </a>
+            </li>
+        @endrole
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-settings"></i>
@@ -60,7 +80,6 @@
                         <div>Logout</div>
                     </a>
                 </li>
-
             </ul>
         </li>
     </ul>
